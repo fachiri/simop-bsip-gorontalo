@@ -13,20 +13,19 @@ class ManagerSeeder extends Seeder
 {
     public function run(): void
     {
-        $dataExists = User::where('username', 'manager')->exists();
+        $dataExists = User::where('username', 'kadis')->exists();
 
         if ($dataExists) {
             return;
         }
 
         $user = User::create([
-            'name' => 'Manager',
-            'username' => 'manager',
-            'email' => 'manager@gmail.com',
+            'name' => 'Kepala Dinas',
+            'username' => 'kadis',
+            'email' => 'kadis@gmail.com',
             'gender' => UserGender::MALE,
-            'birthday' => '2002-10-08',
             'phone' => '0812-3456-7891',
-            'password' => Hash::make('manager')
+            'password' => Hash::make('kadis')
         ]);
 
         Manager::create([

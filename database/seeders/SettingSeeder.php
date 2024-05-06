@@ -16,8 +16,8 @@ class SettingSeeder extends Seeder
         }
 
         Setting::create([
-            'app_name' => 'MyApp',
-            'app_desc' => 'Lorem Ipsum Dolor Sit Amet',
+            'app_name' => 'Simop',
+            'app_desc' => 'Sistem Informasi Monitoring dan Pelaporan BSIP Gorontalo',
             'report_header' => '<h4>LOREM IPSUM DOLOR SIT AMET <br> CONSECTUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR <br> INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA</h4>'
         ]);
     }

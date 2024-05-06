@@ -38,7 +38,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
 					<h4 class="card-title pl-1">Daftar Pengguna</h4>
 					<div class="d-flex gap-2">
-						<a href="{{ route('dashboard.master.user.create') }}" class="btn btn-primary btn-sm">
+						<a href="{{ route('dashboard.master.users.create') }}" class="btn btn-primary btn-sm">
 							<i class="bi bi-plus-square"></i>
 							Tambah Data
 						</a>
@@ -49,8 +49,8 @@
 						<thead>
 							<tr>
 								<th>Nama</th>
-								<th>Email</th>
 								<th>Jenis Kelamin</th>
+								<th>No HP</th>
 								<th style="white-space: nowrap">Aksi</th>
 							</tr>
 						</thead>
@@ -66,21 +66,20 @@
 	<script type="text/javascript">
 		$(function() {
 			const table = $('.data-table').DataTable({
-				// processing: true,
 				serverSide: true,
-				ajax: "{{ route('dashboard.master.user.index') }}",
+				ajax: "{{ route('dashboard.master.users.index') }}",
 				columns: [{
 						data: 'name',
 						name: 'name'
 					},
 					{
-						data: 'email',
-						name: 'email'
-					},
-					{
 						data: 'gender',
 						name: 'gender',
 						orderable: false,
+					},
+					{
+						data: 'phone',
+						name: 'phone'
 					},
 					{
 						data: 'action',
@@ -92,7 +91,7 @@
 			});
 
 			$('.filter-select').change(function() {
-				table.column(2).search($(this).val()).draw();
+				table.column(1).search($(this).val()).draw();
 			});
 		});
 	</script>

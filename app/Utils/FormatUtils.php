@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use Carbon\Carbon;
+
 class FormatUtils
 {
   public static function phoneNumber($phoneNumber)
@@ -11,5 +13,18 @@ class FormatUtils
       return $formattedPhone;
     }
     return null;
+  }
+
+  public static function dateIndo($date)
+  {
+    if ($date) {
+      return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+    }
+    return null;
+  }
+
+  public static function chatTime($timestamp)
+  {
+    return Carbon::parse($timestamp)->diffForHumans();
   }
 }

@@ -4,6 +4,16 @@
 	</div>
 	<div class="col-md-8 form-group">
 		<input type="{{ $type ?? 'text' }}" class="form-control @error($name) is-invalid @enderror {{ $class ?? '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? $label }}" value="{{ $value ?? old($name) }}" format="{{ $format ?? '' }}" maxlength="{{ $maxlength ?? '' }}" {{ isset($disabled) && $disabled == true ? 'disabled' : '' }} {{ isset($readonly) && $readonly == true ? 'readonly' : '' }} />
+		@if (isset($type) && $type === 'file' && isset($value))
+			<div id="{{ $name }}FileHelpBlock" class="form-text">
+				File: <a href="{{ asset('storage/uploads/attachments/' . $value) }}">{{ $value }}</a>
+			</div>
+		@endif
+		@if (isset($helpBlock))
+			<div id="{{ $name }}HelpBlock" class="form-text">
+				{{ $helpBlock }}
+			</div>
+		@endif
 		@error($name)
 			<div class="invalid-feedback">{{ $message }}</div>
 		@enderror

@@ -59,4 +59,29 @@ class User extends Authenticatable
     {
         return $this->hasOne(Manager::class);
     }
+
+    public function pic(): HasOne
+    {
+        return $this->hasOne(Pic::class);
+    }
+
+    public function departmentHead(): HasOne
+    {
+        return $this->hasOne(DepartmentHead::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->admin()->exists();
+    }
+
+    public function isManager(): bool
+    {
+        return $this->manager()->exists();
+    }
+
+    public function isPic(): bool
+    {
+        return $this->pic()->exists();
+    }
 }

@@ -29,9 +29,26 @@
 	                'subItems' => [
 	                    (object) [
 	                        'label' => 'Pengguna',
-	                        'link' => route('dashboard.master.user.index'),
+	                        'link' => route('dashboard.master.users.index'),
+	                    ],
+	                    (object) [
+	                        'label' => 'PJ',
+	                        'link' => route('dashboard.master.pics.index'),
 	                    ],
 	                ],
+	            ],
+	            (object) [
+	                'label' => 'Kegiatan',
+	                'icon' => 'bi bi-calendar-check-fill',
+	                'hasSubItems' => false,
+	                'link' => route('dashboard.activities.index'),
+	                'badge' => '<span class="badge bg-light-danger">' . $activityCount . '</span>',
+	            ],
+							(object) [
+	                'label' => 'Dokumentasi',
+	                'icon' => 'bi bi-camera-fill',
+	                'hasSubItems' => false,
+	                'link' => route('dashboard.documentations.index'),
 	            ],
 	        ],
 	    ],
@@ -87,7 +104,7 @@
 							</div>
 						@else
 							<div class="d-flex align-items-center gap-2">
-								<img src="{{ asset('images/default/jejakode.svg') }}" alt="Logo" srcset="">
+								<img src="{{ asset('icon.webp') }}" alt="Logo" style="height: 35px">
 								<span class="fs-5 text-primary">{{ $setting->app_name }}</span>
 							</div>
 						@endif
@@ -145,7 +162,12 @@
 									<li class="sidebar-item">
 										<a href="{{ $item->link }}" class='sidebar-link'>
 											<i class="{{ $item->icon }}"></i>
-											<span>{{ $item->label }}</span>
+											<span class="w-100 d-flex justify-content-between">
+												<div>{{ $item->label }}</div>
+												@if (isset($item->badge))
+													{!! $item->badge !!}
+												@endif
+											</span>
 										</a>
 									</li>
 								@endif

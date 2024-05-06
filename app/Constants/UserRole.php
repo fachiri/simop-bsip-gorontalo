@@ -4,7 +4,9 @@ namespace App\Constants;
 
 class UserRole
 {
-  public const USER = 'USER';
+  public const USER = 'ANGGOTA';
+  public const PIC = 'PJ';
   public const ADMIN = 'ADMIN';
-  public const MANAGER = 'MANAGER';
+  public const DEPARTMENT_HEAD = 'KABID';
+  public const MANAGER = 'KADIS';
 }

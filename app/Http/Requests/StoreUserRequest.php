@@ -19,9 +19,9 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string|max:32',
             'username' => 'required|regex:/^[a-zA-Z0-9_]+$/|unique:users,username',
             'email' => 'nullable|email|unique:users,email',
-            'phone' => 'nullable|max:14',
+            'phone' => 'required|max:14',
             'birthday' => 'nullable|date',
-            'gender' => 'nullable|in:'.UserGender::MALE.','.UserGender::FEMALE
+            'gender' => 'required|in:'.UserGender::MALE.','.UserGender::FEMALE
         ];
     }
 }

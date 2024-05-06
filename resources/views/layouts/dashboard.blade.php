@@ -5,12 +5,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{{ $setting->app_name }} - @yield('title')</title>
-		<link rel="shortcut icon" href="{{ $setting->app_logo ? asset('storage/uploads/settings/' . $setting->app_logo) : asset('images/default/jejakode.svg') }}" type="image/x-icon">
+		<link rel="shortcut icon" href="{{ $setting->app_logo ? asset('storage/uploads/settings/' . $setting->app_logo) : asset('favicon.ico') }}" type="image/x-icon">
 		<link rel="preconnect" href="https://fonts.bunny.net">
 		<link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet">
 		@stack('css')
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/app-dark.css') }}">
+		<style>
+			.cursor-pointer {
+				cursor: pointer;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -55,7 +60,7 @@
 					@yield('content')
 				</div>
 
-				<footer>
+				{{-- <footer>
 					<div class="footer clearfix text-muted mb-0">
 						<div class="float-start">
 							<p>{{ date('Y') }} &copy; {{ $setting->app_name }}</p>
@@ -64,10 +69,10 @@
 							<p>Developed by <a href="https://jejakode.com">jejakode.com</a></p>
 						</div>
 					</div>
-				</footer>
+				</footer> --}}
 			</div>
 		</div>
-
+		@yield('modal')
 		<script src="{{ asset('js/dark.js') }}"></script>
 		<script src="{{ asset('js/extensions/perfect-scrollbar.min.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script>

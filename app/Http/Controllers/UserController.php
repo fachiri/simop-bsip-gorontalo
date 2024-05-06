@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserAccountRequest;
 use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
@@ -16,14 +17,15 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             $data = User::query();
-            $data->whereDoesntHave('admin');
-            $data->whereDoesntHave('manager');
+            // $data->whereDoesntHave('admin');
+            // $data->whereDoesntHave('manager');
+            // $data->whereDoesntHave('pic');
 
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $actionBtn = '
-                        <a href="' . route('dashboard.master.user.show', $row->uuid) . '" class="btn btn-primary btn-sm">
+                        <a href="' . route('dashboard.master.users.show', $row->uuid) . '" class="btn btn-primary btn-sm">
                             <i class="bi bi-list-ul"></i>
                             Detail
                         </a> 
@@ -75,11 +77,22 @@ class UserController extends Controller
     {
         try {
             $user->name = $request->name;
-            $user->username = $request->username;
-            $user->email = $request->email;
             $user->phone = $request->phone;
             $user->birthday = $request->birthday;
             $user->gender = $request->gender;
+            $user->save();
+
+            return redirect()->back()->with('success', 'Data berhasil diperbarui.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors($th->getMessage())->withInput();
+        }
+    }
+
+    public function update_account(UpdateUserAccountRequest $request, User $user)
+    {
+        try {
+            $user->username = $request->username;
+            $user->email = $request->email;
             $user->save();
 
             return redirect()->back()->with('success', 'Data berhasil diperbarui.');
@@ -104,6 +117,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('dashboard.master.user.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('dashboard.master.users.index')->with('success', 'Data berhasil dihapus');
     }
 }

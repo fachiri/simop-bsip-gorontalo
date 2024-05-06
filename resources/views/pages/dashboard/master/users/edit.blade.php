@@ -1,12 +1,12 @@
 @extends('layouts.dashboard', [
     'breadcrumbs' => [
         'Dasbor' => route('dashboard.index'),
-        'Master Pengguna' => route('dashboard.master.user.index'),
-        $user->name => route('dashboard.master.user.show', $user->uuid),
+        'Master Anggota' => route('dashboard.master.users.index'),
+        $user->name => route('dashboard.master.users.show', $user->uuid),
         'Edit' => null,
     ],
 ])
-@section('title', 'Edit Pengguna')
+@section('title', 'Edit Anggota')
 @section('content')
 	<section class="row">
 		<div class="col-12">
@@ -15,9 +15,7 @@
 					<h4 class="card-title pl-1">Personal</h4>
 				</div>
 				<div class="card-body px-4">
-					<x-form.layout.horizontal action="{{ route('dashboard.master.user.update', $user->uuid) }}" method="PUT" submit-text="Perbarui">
-						<input type="hidden" name="username" value="{{ $user->username }}">
-						<input type="hidden" name="email" value="{{ $user->email }}">
+					<x-form.layout.horizontal action="{{ route('dashboard.master.users.update', $user->uuid) }}" method="PUT" submit-text="Perbarui">
 						<x-form.input layout="horizontal" name="name" label="Nama Lengkap" :value="$user->name" />
 						<x-form.select layout="horizontal" name="gender" label="Jenis Kelamin" :value="$user->gender" :options="[
 						    (object) [
@@ -41,11 +39,7 @@
 					<h4 class="card-title pl-1">Akun</h4>
 				</div>
 				<div class="card-body px-4">
-					<x-form.layout.horizontal action="{{ route('dashboard.master.user.update', $user->uuid) }}" method="PUT" submit-text="Perbarui">
-						<input type="hidden" name="name" value="{{ $user->name }}">
-						<input type="hidden" name="gender" value="{{ $user->gender }}">
-						<input type="hidden" name="birthday" value="{{ $user->birthday }}">
-						<input type="hidden" name="phone" value="{{ $user->phone }}">
+					<x-form.layout.horizontal action="{{ route('dashboard.master.users.update.account', $user->uuid) }}" method="PATCH" submit-text="Perbarui">
 						<x-form.input layout="horizontal" name="username" label="Username" :value="$user->username" />
 						<x-form.input layout="horizontal" type="email" name="email" label="Email" :value="$user->email" placeholder="Email aktif.." />
 					</x-form.layout.horizontal>
@@ -58,7 +52,7 @@
 					<h4 class="card-title pl-1">Ganti Password</h4>
 				</div>
 				<div class="card-body px-4">
-					<x-form.layout.horizontal action="{{ route('dashboard.master.user.update.password', $user->uuid) }}" method="PUT" submit-text="Perbarui">
+					<x-form.layout.horizontal action="{{ route('dashboard.master.users.update.password', $user->uuid) }}" method="PATCH" submit-text="Perbarui">
 						<x-form.input layout="horizontal" type="password" name="new_password" label="Password Baru" placeholder="Password Baru" />
 						<x-form.input layout="horizontal" type="password" name="confirm_password" label="Konfirmasi Password Baru" placeholder="Konfirmasi Password Baru" />
 					</x-form.layout.horizontal>

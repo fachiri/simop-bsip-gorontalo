@@ -1,20 +1,20 @@
 @extends('layouts.dashboard', [
     'breadcrumbs' => [
         'Dasbor' => route('dashboard.index'),
-        'Master Pengguna' => route('dashboard.master.user.index'),
+        'Master Anggota' => route('dashboard.master.users.index'),
         'Tambah Data' => null,
     ],
 ])
-@section('title', 'Tambah Pengguna')
+@section('title', 'Tambah Anggota')
 @section('content')
 	<section class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header d-flex justify-content-between align-items-center">
-					<h4 class="card-title pl-1">Form Tambah Pengguna</h4>
+					<h4 class="card-title pl-1">Form Tambah Anggota</h4>
 				</div>
 				<div class="card-body px-4">
-					<x-form.layout.horizontal action="{{ route('dashboard.master.user.store') }}" method="POST">
+					<x-form.layout.horizontal action="{{ route('dashboard.master.users.store') }}" method="POST">
 						<x-form.input layout="horizontal" name="name" label="Nama Lengkap" placeholder="Nama Lengkap.." />
 						<x-form.input layout="horizontal" name="username" label="Username" placeholder="Username.." />
 						<x-form.input layout="horizontal" type="email" name="email" label="Email" placeholder="Email aktif.." />

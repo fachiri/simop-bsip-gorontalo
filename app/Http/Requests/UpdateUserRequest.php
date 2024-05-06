@@ -19,8 +19,6 @@ class UpdateUserRequest extends FormRequest
             'gender' => 'nullable|in:' . UserGender::MALE . ',' . UserGender::FEMALE,
             'phone' => 'nullable|max:14',
             'birthday' => 'nullable|date',
-            'username' => 'required|regex:/^[a-zA-Z0-9_]+$/|unique:users,username,' . $this->user->id,
-            'email' => 'nullable|email|unique:users,email,' . $this->user->id,
         ];
     }
 }
